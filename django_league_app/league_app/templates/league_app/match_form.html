@@ -1,0 +1,28 @@
+{% extends 'league_app/nav.html' %}
+{% load static %}
+
+{% block style_block %}
+    <link rel="stylesheet" href="{% static 'css/match_form.css' %}">
+{% endblock style_block %}
+
+{% block script_block %}
+{% endblock script_block %}
+
+{% block content %}
+
+<div class="ball"></div>
+<span class="shadow"></span>
+
+<h1>Match Form</h1>
+<!-- <a href="{% url 'matches' %}">Go back</a> -->
+<form method="POST" action="">
+    {% csrf_token %}
+    <table id="match_form_table">   
+        {{ context.form.as_table }}
+    </table>
+    
+    <input type="submit" value="Submit" class="btn btn-success mt-3">
+</form>
+
+
+{% endblock content %}

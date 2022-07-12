@@ -1,0 +1,75 @@
+#player_general_stats td {
+    transition-duration: 0.3s;
+    opacity: 0.7;
+}
+
+#player_general_stats td:hover {
+    opacity: 1;
+}
+
+
+#general_stats_legend > li:nth-of-type(1):before {
+    background-color: rgb(70, 105, 141);
+    border-style: none;
+  }
+#general_stats_legend > li:nth-of-type(2):before {
+    background-color: rgb(184, 108, 108);
+    border-style: none;
+  }
+#general_stats_legend > li:nth-of-type(3):before {
+    background-color: rgb(77, 139, 81);
+    border-style: none;
+  }
+
+#player_general_stats.bar {
+margin: 0 -10px;
+}
+
+#general_stats_legend {
+    border: 0
+}
+
+.data {
+    color:white
+}
+
+#tt1 {
+    background-color: rgb(24 39 65);
+}
+
+#tt3 {
+    background-color: rgb(13 53 11);
+}
+
+#tt2 {
+    background-color: rgb(44 10 10);
+}
+
+
+#score_stats_table  {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mvp_table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table, col, tr, td {
+    border: 1px solid #c2c2c2;
+    border-collapse: collapse;
+}
+
+.mvp_title {
+    padding: 0rem 1rem;
+}
+
+.green_text {
+    color: rgb(13, 86, 13);
+    font-weight: bold;
+}
+.red_text {
+    color: rgb(86, 13, 13);
+    font-weight: bold;
+}

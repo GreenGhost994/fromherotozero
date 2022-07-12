@@ -1,0 +1,122 @@
+{% extends 'league_app/nav.html' %}
+
+{% load static %}
+
+
+{% block style_block %}
+    <link rel="stylesheet" href="{% static 'css/match_assistant.css' %}">
+{% endblock style_block %}
+
+
+{% block content %}
+
+
+
+<div class="ball"></div>
+<span class="shadow"></span>
+
+<h1>New match assistant</h1>
+<!-- <a href="{% url 'league_list' %}">Go back</a> -->
+
+<form method="GET" name="matchassistant">
+    <table id="player_input_table">
+        <tr>
+            <th>Player 1:</th>
+            <td><select name="p1">
+            {% for player in players %}
+            <option value="{{ player.user.id }}"
+            {% if player.user.id == previous.p1 %} selected="selected"{% endif %}>
+                {{ player.user }}
+            </option>
+            {% endfor %}
+            </select></td>
+            <td><select name="s1">
+            <option value="" {% if  previous.s1 == "" %} selected="selected"{% endif %}>No preference</option>
+            <option value="atk" {% if  previous.s1 == "atk" %} selected="selected"{% endif %}>Attack</option>
+            <option value="def" {% if  previous.s1 == "def" %} selected="selected"{% endif %}>Defense</option>
+            </select></td>
+        </tr>
+        <tr>
+            <th>Player 2:</th>
+            <td><select name="p2">
+            {% for player in players %}
+            <option value="{{ player.user.id }}"
+            {% if player.user.id == previous.p2 %} selected="selected"{% endif %}>
+                {{ player.user }}
+            </option>
+            {% endfor %}
+            </select></td>
+            <td><select name="s2">
+            <option value="" {% if  previous.s2 == "" %} selected="selected"{% endif %}>No preference</option>
+            <option value="atk" {% if  previous.s2 == "atk" %} selected="selected"{% endif %}>Attack</option>
+            <option value="def" {% if  previous.s2 == "def" %} selected="selected"{% endif %}>Defense</option>
+            </select></td>
+        </tr>
+        <tr>
+            <th>Player 3:</th>
+            <td><select name="p3">
+            {% for player in players %}
+            <option value="{{ player.user.id }}"
+            {% if player.user.id == previous.p3 %} selected="selected"{% endif %}>
+                {{ player.user }}
+            </option>
+            {% endfor %}
+            </select></td>
+            <td><select name="s3">
+            <option value="" {% if  previous.s3 == "" %} selected="selected"{% endif %}>No preference</option>
+            <option value="atk" {% if  previous.s3 == "atk" %} selected="selected"{% endif %}>Attack</option>
+            <option value="def" {% if  previous.s3 == "def" %} selected="selected"{% endif %}>Defense</option>
+            </select></td>
+        </tr>
+        <tr>
+            <th>Player 4:</th>
+            <td><select name="p4">
+            {% for player in players %}
+            <option value="{{ player.user.id }}"
+            {% if player.user.id == previous.p4 %} selected="selected"{% endif %}>
+                {{ player.user }}
+            </option>
+            {% endfor %}
+            </select></td>
+            <td><select name="s4">
+            <option value="" {% if  previous.s4 == "" %} selected="selected"{% endif %}>No preference</option>
+            <option value="atk" {% if  previous.s4 == "atk" %} selected="selected"{% endif %}>Attack</option>
+            <option value="def" {% if  previous.s4 == "def" %} selected="selected"{% endif %}>Defense</option>
+            </select></td>
+        </tr>
+    </table>
+    <div class="submit_button_container">
+        <input type="submit" value="Prepare proposals" class="btn btn-success mt-3">
+    </div>
+</form>
+<br>
+{% if results|length > 0 %}
+    <table id="match_proposal_table">
+        <tr>
+            <th>
+                Match
+            </th>
+            <th>
+                Games
+            </th>
+        </tr>
+        {% for proposal in results.values %}
+
+            <tr>
+            
+                <td {% if proposal.1 == True %}class="green_text"{% endif %}>
+                    <span class="match_name">{{ proposal.2 }}</span>
+                </td>            
+                <td>
+                    <span class="no_of_games">{{ proposal.0 }}</span>
+                </td>
+            
+        </tr>
+        {% endfor %}
+    </table>
+{% endif %}
+
+
+
+
+{% endblock content %}

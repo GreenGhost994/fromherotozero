@@ -1,0 +1,30 @@
+
+/* #submit_button {
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 14px 28px;
+    cursor: pointer;
+    text-align: center;
+} */
+
+.league_table {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.league_table td {
+    padding: 2px;
+  }
+
+.league_table th {
+    padding: 2px;
+    text-align: left;
+  } */
+
+
+  /* .name_btn.btn {
+    width: 80px;
+}

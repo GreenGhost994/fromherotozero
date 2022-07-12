@@ -1,0 +1,61 @@
+
+#submit_button {
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 14px 28px;
+    cursor: pointer;
+    text-align: center;
+}
+
+#player_input_table {
+    border-collapse: collapse;
+    border-width: 1px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#player_input_table td {
+    padding: 2px;
+  }
+  
+#match_proposal_table {
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+#match_proposal_table td {
+    border: 1px solid #ddd;
+    padding: 4px;
+  }
+
+#match_proposal_table th {
+    border: 1px solid #ddd;
+    padding: 4px;
+    background-color: #e3e3e3;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+#match_proposal_table tr:nth-child(odd){background-color: #f2f2f2;}
+
+.no_of_games {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.match_name {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.green_text {
+    color: rgb(13, 86, 13);
+    font-weight: bold;
+}
+.red_text {
+    color: rgb(86, 13, 13);
+    font-weight: bold;
+}

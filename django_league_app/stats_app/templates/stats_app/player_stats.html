@@ -1,0 +1,184 @@
+{% extends 'league_app/nav.html' %}
+{% load static %}
+
+
+{% block style_block %}
+    <link rel="stylesheet" href="{% static 'css/player_stats.css' %}">
+{% endblock style_block %}
+
+{% block script_block %}
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+<script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
+{% endblock script_block %}
+
+
+
+{% block content %}
+
+<h1>{{ context.league }}</h1>
+<form method="GET">
+    Season:
+    <input type="text" name="season" value="{{ context.season }}">
+    <input type="submit" value="Search" class="btn btn-secondary btn-sm">
+</form>
+
+<h1>{{ context.results.player_name }}</h1>
+
+<table class="result_table">
+    <tr>
+        <td class="basic_stats" style="position: relative; height:33vh; width:33vw">
+            <canvas id="total_wins_defeats"></canvas>
+        </td>
+    </tr>
+    <tr>
+        <td class="basic_stats" style="position: relative; height:33vh; width:33vw">
+            <canvas id="atk_wins_defeats"></canvas>
+        </td>
+    </tr>
+    <tr>
+        <td class="basic_stats" style="position: relative; height:33vh; width:33vw">
+            <canvas id="def_wins_defeats"></canvas>
+        </td>
+    </tr>
+</table>
+
+<h1>Streaks</h1>
+<div class="chart-wrapper">
+<canvas id="streaks" width="300" height="300" max_width="50%" max_height="50%"></canvas>
+</div>
+<h1>Dominations</h1>
+
+
+<script type="text/javascript">
+    let ctx = document.getElementById("total_wins_defeats").getContext("2d");
+    chart(ctx, 'Total win ratio ' + {{ context.results.win_ratio.general|floatformat:0 }} + '%', {{ context.results.wins.general }}, {{ context.results.defeats.general }},'#1AA4E6', '#BEC8CE')
+    let ctx2 = document.getElementById("atk_wins_defeats").getContext("2d");
+    chart(ctx2, 'Attack win ratio ' + {{ context.results.win_ratio.atk|floatformat:0 }} + '%', {{ context.results.wins.atk }}, {{ context.results.defeats.atk }},'#A71E1E', '#D1BEBE')
+    let ctx3 = document.getElementById("def_wins_defeats").getContext("2d");
+    chart(ctx3, 'Defense win ratio ' + {{ context.results.win_ratio.def|floatformat:0 }} + '%', {{ context.results.wins.def }}, {{ context.results.defeats.def }},'#3AA71E', '#C1CEBE')
+
+
+    function chart(ctx, name, val1, val2, color1, color2) {
+        let chart = new Chart(ctx, {
+        type: "pie",
+        data: {
+            labels: ["Wins", "Defeats"],
+            datasets: [
+                {
+                    backgroundColor: [
+                        color1,
+                        color2
+                    ],
+                data: [val1, val2]
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            legend: {
+                position: 'bottom',
+            },
+            title: {
+                text: name,
+                display: true
+            }
+        }
+        });
+    }
+</script>
+
+<script type="text/javascript">
+    let ctx4 = document.getElementById("streaks").getContext("2d");
+    let chart4 = new Chart(ctx4, {
+    type: "polarArea",
+    data: {
+        labels: ["Win streak", "Defeat streak", "Attack win streak", "Attack defeat streak", "Defense win streak",
+        "Defense defeat streak",],
+        datasets: [
+            {
+            data: [
+            {{ context.results.streak.win }},
+            {{ context.results.streak.defeat }},
+            {{ context.results.streak.win_atk }},
+            {{ context.results.streak.defeat_atk }},
+            {{ context.results.streak.win_def }},
+            {{ context.results.streak.defeat_def }},
+            ],
+            backgroundColor: [
+            'rgba(26, 164, 230, 0.4)',
+            'rgba(190, 200, 206, 0.4)',
+            'rgba(167, 30, 30, 0.4)',
+            'rgba(209, 190, 190, 0.4)',
+            'rgba(58, 167, 30, 0.4)',
+            'rgba(193, 206, 190, 0.4)',
+            ],
+            borderColor: [
+            'rgba(26, 164, 230, 0.4)',
+            'rgba(26, 164, 230, 0.4)',
+            'rgba(167, 30, 30, 0.4)',
+            'rgba(167, 30, 30, 0.4)',
+            'rgba(58, 167, 30, 0.4)',
+            'rgba(58, 167, 30, 0.4)',
+            ]
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        scales: {
+        r: {
+            pointLabels: {
+            display: true,
+            centerPointLabels: true,
+            font: {
+                size: 18
+            }
+            }
+        }
+        },
+        legend: {
+            position: 'bottom',
+        },
+    }
+    });
+
+</script>
+
+
+
+
+
+<div class="cards-list">
+    {% for key, value in context.results.dominated_by.items %}
+        <div class="card card_red">
+        <div class="card_image"> <img src="{{ value.2 }}" /> </div>
+        <div class="card_score title-white">
+            <p>{{ value.1 }}</p>
+        </div>
+        <div class="card_title title-white">
+            <p>{{ context.results.player_name }}
+                is dominated by
+                {{ value.0 }}</p>
+        </div>
+        </div>
+    {% endfor %}
+
+    {% for key, value in context.results.dominate.items %}
+        <div class="card card_green">
+        <div class="card_image"> <img src="{{ value.2 }}" /> </div>
+        <div class="card_score title-white">
+            <p>{{ value.1 }}</p>
+        </div>
+        <div class="card_title title-white">
+            <p>{{ context.results.player_name }}
+                 dominate 
+                {{ value.0 }}</p>
+        </div>
+        </div>
+    {% endfor %}
+    
+    </div>
+
+{% endblock content %}
+

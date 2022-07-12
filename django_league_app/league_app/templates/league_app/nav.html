@@ -1,0 +1,131 @@
+{% extends 'league_app/main.html' %}
+{% block topcontent %}
+
+
+<div class="header">
+
+</div>
+
+<input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
+<label for="openSidebarMenu" class="sidebarIconToggle">
+<div class="spinner diagonal part-1"></div>
+<div class="spinner horizontal"></div>
+<div class="spinner diagonal part-2"></div>
+</label>
+
+<div class="user_info">
+    {% if request.user.is_authenticated %}
+    <div class="user_name">
+        Hi {{ request.user }}!
+    </div>
+    <div class="loginout">
+        <a href="{% url 'logout' %}">Logout</a>
+    </div><!-- <hr> -->
+    {% else %}
+    <div class="loginout">
+        <a href="{% url 'login' %}">Login</a>
+    </div>
+    {% endif %}
+    
+</div>
+
+<div id="sidebarMenu">
+    <ul class="sidebarMenuInner">
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="{% url 'matchcreate' %}">
+                <span class="fa-layers fa-fw p-1">
+                    <i class="fa-solid fa-play"></i>
+                </span>
+                Add match
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="{% url 'matchassistant' %}">
+                <span class="fa-layers fa-fw p-1">
+                    <i class="fa-solid fa-group-arrows-rotate"></i>
+                </span>
+                Player positions
+            </a>
+        </li>
+        <li class="nav-item">
+
+            <a class="nav-link" data-toggle="tab" href="{% url 'matches' %}">
+                <span class="fa-layers fa-fw p-1">
+                    <i class="fa-solid fa-list"></i>
+                </span>
+                Matches
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="{% url 'stats' %}?season={% now 'm' %}/{% now 'Y' %}">
+                <span class="fa-layers fa-fw p-1">
+                    <i class="fa-solid fa-chart-column"></i>
+                </span>
+                Statistics
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="{% url 'leagueselect' %}">
+                <span class="fa-layers fa-fw p-1">
+                    <i class="fa-solid fa-user-tag"></i>
+                </span>
+                Select league
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="{% url 'league_list' %}">
+                <span class="fa-layers fa-fw p-1">
+                    <i class="fa-solid fa-users-line"></i>
+                </span>
+                Leagues
+            </a>
+        </li>
+    </ul>
+
+</div>
+<div id='center' class="main center">
+    <div class="mainInner">
+        {% block content %}
+
+        {% endblock content %}
+    </div>
+</div>
+
+
+
+
+<!-- {% if request.user.is_authenticated %}
+    <p>Hi {{ request.user }}!</p>
+    <a href="{% url 'logout' %}">Logout</a>
+<hr>
+{% else %}
+<a href="{% url 'login' %}">Login</a>
+{% endif %} -->
+
+
+<!-- <ul class="nav"> -->
+    <!-- <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="{% url 'matchcreate' %}">
+        Add match</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="{% url 'matches' %}">
+        Matches</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="{% url 'stats' %}?season={% now 'm' %}/{% now 'Y' %}">
+        Statistics</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="{% url 'leagueselect' %}">
+        Select current league</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="{% url 'league_list' %}">
+        Leagues</a>
+    </li> -->
+<!-- </ul> -->
+
+
+
+{% endblock topcontent %}

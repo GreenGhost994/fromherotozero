@@ -1,0 +1,30 @@
+
+#submit_button {
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 14px 28px;
+    cursor: pointer;
+    text-align: center;
+}
+
+#player_input_table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#match_form_table {
+
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+#match_form_table td {
+    padding: 2px;
+  }
+
+#match_form_table th {
+    padding: 2px;
+    text-align: left;
+  }

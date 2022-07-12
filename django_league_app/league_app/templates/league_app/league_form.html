@@ -1,0 +1,15 @@
+{% extends 'league_app/nav.html' %}
+{% block content %}
+
+<h1>League Form</h1>
+
+<form method="POST" action="">
+    {% csrf_token %}
+    <table id="match_form_table">   
+        {{ form.as_table }}
+    </table>
+    <input type="submit" value="Submit" class="btn btn-success btn-sm m-1">
+    <a class="btn btn-outline-secondary btn-sm m-1" href="{% url 'league_list' %}">Go back</a>
+</form>
+
+{% endblock content %}

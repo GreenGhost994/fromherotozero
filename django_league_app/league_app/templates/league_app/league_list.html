@@ -1,0 +1,40 @@
+{% extends 'league_app/nav.html' %}
+{% block content %}
+
+
+<!-- {% if request.user.is_authenticated %}
+    <p>{{ request.user }}</p>
+    <a href="{% url 'logout' %}">Logout</a>
+<hr>
+{% else %}
+<a href="{% url 'login' %}">Login</a>
+{% endif %} -->
+
+
+<h1>Your Leagues</h1>
+<a href="{% url 'leaguecreate' %}">Add league</a>
+
+<form method="GET">
+    <input type="text" name="search-area" value="{{ search_input }}">
+    <input type="submit" value="Search">
+</form>
+
+<table>
+    <tr>
+        <th>League name</th>
+    </tr>
+    {% for league in leagues %}
+    <tr>
+        <td>{{ league.title }}</td>
+        <td><a href="{% url 'league' league.id %}">View</a></td>
+        <td><a href="{% url 'leagueupdate' league.id %}">Edit</a></td>
+        <td><a href="{% url 'leaguedelete' league.id %}">Delete</a></td>
+    </tr>
+    {% empty %}
+        <h3>No items in list</h3>
+    {% endfor %}
+</table>
+
+<h1>Member of leagues</h1>
+
+{% endblock content %}

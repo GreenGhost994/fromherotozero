@@ -1,0 +1,14 @@
+{% extends 'league_app/nav.html' %}
+{% block content %}
+
+<h1>Login</h1>
+<a href="{% url 'league_list' %}">Go back</a>
+<form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Login" class="btn btn-gray">
+</form>
+
+<p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+
+{% endblock content %}

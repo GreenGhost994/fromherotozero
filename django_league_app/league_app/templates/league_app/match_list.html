@@ -1,0 +1,53 @@
+{% extends 'league_app/nav.html' %}
+{% load static %}
+
+{% block style_block %}
+    <link rel="stylesheet" href="{% static 'css/match_list.css' %}">
+{% endblock style_block %}
+
+
+{% block content %}
+
+<div class="ball"></div>
+<span class="shadow"></span>
+
+<h1>Match list</h1>
+<!-- <a href="{% url 'matchcreate' %}">Add match</a> -->
+
+<!-- <form method="GET">
+    <input type="text" name="search-area" value="{{ search_input }}">
+    <input type="submit" value="Search">
+</form> -->
+
+<table id="match_list_table">
+
+    {% for match in matches %}
+    <tr>
+        <td style="font-size:60%;">{{ match.created|date:"d.m.Y" }}<br>{{ match.created|date:"G:i" }}</td>
+        <td style="padding: 0px 1rem;">{{ match }}</td>
+        <td><a class="btn btn-outline-secondary btn-sm" href="{% url 'match' match.id %}">View</a></td>
+        <td><a class="btn btn-outline-dark btn-sm" href="{% url 'matchupdate' match.id %}">Edit</a></td>
+        <td><a class="btn btn-outline-danger btn-sm" href="{% url 'matchdelete' match.id %}">Delete</a></td>
+    </tr>
+    {% empty %}
+        <h3>No items in list</h3>
+    {% endfor %}
+</table>
+
+{% if is_paginated %}
+        <div class="pagination mt-3 justify-content-center">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a class="btn btn-outline-secondary btn-sm" href="/matches?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a class="btn btn-outline-secondary btn-sm" href="/matches?page={{ page_obj.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div>
+    {% endif %}
+
+{% endblock content %}

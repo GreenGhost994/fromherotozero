@@ -1,0 +1,45 @@
+{% extends 'league_app/nav.html' %}
+{% load static %}
+
+{% block style_block %}
+    <link rel="stylesheet" href="{% static 'css/league_manage.css' %}">
+{% endblock style_block %}
+
+
+{% block content %}
+
+<h1>{{ league.title }}</h1>
+Created by {{ league.user }}
+<br>
+<a class="btn btn-outline-secondary btn-sm m-2" href="{% url 'league_list' %}">Go back</a>
+<br>
+<h3>Players:</h3>
+<table id="player_table">
+{% for player in players %}
+<tr>
+    {% if player.accept %}
+    <td>{{ player.user }}</td>
+    <td><a class="btn btn-outline-danger btn-sm" href="{% url 'requestdelete' player.id %}">Remove</a></td>
+    {% endif %}
+</tr>
+{% empty %}
+    <h3>No items in list</h3>
+{% endfor %}
+</table>
+
+<br>
+<h3>Join requests:</h3>
+<table id="player_request_table">
+{% for player in players %}
+<tr>
+    {% if not player.accept %}
+    <td>{{ player.user }}</td>
+    <td><a class="btn btn-outline-success btn-sm" href="{% url 'requestaccept' player.id %}">Accept</a></td>
+    <td><a class="btn btn-outline-danger btn-sm" href="{% url 'requestdelete' player.id %}">Reject</a></td>
+    {% endif %}
+</tr>
+{% empty %}
+    <h3>No items in list</h3>
+{% endfor %}
+</table>
+{% endblock content %}

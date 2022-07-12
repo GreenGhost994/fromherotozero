@@ -1,0 +1,10 @@
+{% extends 'league_app/nav.html' %}
+{% block content %}
+
+<h1>Match info</h1>
+<a href="{% url 'matches' %}">Go back</a>
+<h3>{{ match }}</h3>
+League: {{ match.league }}<br>
+Created: {{ match.created }}<br>
+Score: {{ match.get_score_display }}<br>
+{% endblock content %}

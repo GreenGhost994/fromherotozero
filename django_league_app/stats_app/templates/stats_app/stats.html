@@ -1,0 +1,197 @@
+{% extends 'league_app/nav.html' %}
+{% load static %}
+
+
+{% block style_block %}
+    <link rel="stylesheet" href="{% static 'css/dist/charts.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/stats.css' %}">
+{% endblock style_block %}
+
+
+{% block content %}
+
+<h1>{{ context.league }}</h1>
+<form method="GET">
+    Season:
+    <input type="text" name="season" value="{{ context.season }}">
+    <input type="submit" value="Search" class="btn btn-secondary btn-sm">
+</form>
+Played matches: {{ context.match_amount }}<br>
+<hr class="solid">
+<h1>MVP</h1>
+
+<table class="mvp_table">
+    <col span="1" style="width: 5rem;">
+    <col span="1" style="width: 10rem;">
+    <tr>
+        <th>
+        </th>
+        <th>
+            Player
+        </th>
+    </tr>
+    <tr>
+        <th class="mvp_title">
+            <span class="fa-layers fa-fw p-1">
+                <i class="fas fa-chess-queen" style="color:rgb(0, 102, 255)"></i>
+            </span>
+            Global
+        </th>
+        <td>
+            {{ context.mvp.total.user }}
+        </td>
+    </tr>
+    <tr>
+        <th class="mvp_title">
+            <span class="fa-layers fa-fw">
+                <i class="fas fa-fighter-jet" style="color:rgb(154, 0, 0)"></i>
+            </span>
+            Attack
+        </th>
+        <td>
+            {{ context.mvp.atk.user }}
+        </td>
+    </tr>
+    <tr>
+        <th class="mvp_title">
+            <span class="fa-layers fa-fw">
+                <i class="fa-solid fa-shield" style="color:rgb(0, 133, 0)"></i>
+            </span>
+            Defense
+        </th>
+        <td>
+            {{ context.mvp.def.user }}
+        </td>
+    </tr>
+    <tr>
+        <th class="mvp_title">
+            <span class="fa-layers fa-fw">
+                <i class="fas fa-balance-scale" style="color:rgb(169, 129, 0)"></i>
+            </span>
+            Hybrid
+        </th>
+        <td>
+            {{ context.mvp.hybrid.user }}
+        </td>
+    </tr>
+
+</table><br>
+<hr class="solid">
+<h1>General statistics</h1>
+<!-- {{ context.players }}<br> -->
+<div id="general_stats">
+    <table class="charts-css bar multiple data-spacing-15 show-labels show-4-secondary-axes datasets-spacing-1" id="player_general_stats">
+        <caption>Player stats</caption>
+
+        <thead>
+            <tr>
+            <th scope="col"> Player </th>
+            <th scope="col"> Wins </th>
+            <th scope="col"> Atk wins </th>
+            <th scope="col"> Def wins </th>
+            </tr>
+        </thead>
+
+        {% for key, value in context.players.items %}
+            <tbody>
+                <tr>
+                    <th scope="row"> {{key}}<font size="-3">({{ value.games }} games)</font></th>
+                    <td style="--size:{{ value.win_ratio.0 }}; --color: rgb(40, 88, 136);"> <span class="tooltip" id="tt1">Total: {{ value.games }}<br>Wins: {{ value.wins }} <br> Losses: {{ value.losses }}</span><span class="data">{{ value.win_ratio.1 }}</span> </td>
+                    <td style="--size:{{ value.atk_win_ratio.0 }}; --color: rgb(189, 39, 39);"> <span class="tooltip" id="tt2">Attack: {{ value.atk_games }}<br>Wins: {{ value.atk_wins }} <br> Losses: {{ value.atk_losses }}</span><span class="data">{{ value.atk_win_ratio.1 }}</span></td>
+                    <td style="--size:{{ value.def_win_ratio.0 }}; --color: rgb(45, 158, 52);"> <span class="tooltip" id="tt3">Defense: {{ value.def_games }}<br>Wins: {{ value.def_wins }} <br> Losses: {{ value.def_losses }}</span><span class="data">{{ value.def_win_ratio.1 }}</span> </td>
+                </tr>
+            </tbody>
+        {% endfor %}
+    </table>
+    <ul class="charts-css legend legend-inline legend-square" id="general_stats_legend">
+        <li>Win ratio</li>
+        <li>Atack win ratio</li>
+        <li>Defense win ratio</li>
+    </ul>
+</div>
+<br>
+<hr class="solid">
+<h1>Score table</h1>
+<div id="score_stats">
+    <table id="score_stats_table">
+        <colgroup>
+            <col span="1" style="width: 5rem;">
+            <col span="1" style="width: 2.5rem;">
+            <col span="1" style="width: 2.5rem;">
+            <col span="1" style="width: 2.5rem;">
+            <col span="1" style="width: 2.5rem;">
+            <col span="1" style="width: 2.5rem;">
+            <col span="1" style="width: 2.5rem;">
+            <col span="1" style="width: 2.5rem;">
+            <col span="1" style="width: 2.5rem;">
+            <col span="1" style="width: 2.5rem;">
+            <col span="1" style="width: 2.5rem;">
+            <col span="1" style="width: 2.5rem;">
+            <col span="1" style="width: 2.5rem;">
+            <col span="1" style="width: 2.5rem;">
+            <col span="1" style="width: 2.5rem;">
+            <col span="1" style="width: 2.5rem;">
+            <col span="1" style="width: 2.5rem;">
+            <col span="1" style="width: 2.5rem;">
+            <col span="1" style="width: 2.5rem;">
+            <col span="1" style="width: 2.5rem;">
+            <col span="1" style="width: 2.5rem;">
+         </colgroup>
+        <thead>
+            <tr>
+            <th scope="col"> </th>
+            <th scope="col"> 10:0 </th>
+            <th scope="col"> 10:1 </th>
+            <th scope="col"> 10:2 </th>
+            <th scope="col"> 10:3 </th>
+            <th scope="col"> 10:4 </th>
+            <th scope="col"> 10:5 </th>
+            <th scope="col"> 10:6 </th>
+            <th scope="col"> 10:7 </th>
+            <th scope="col"> 10:8 </th>
+            <th scope="col"> 10:9 </th>
+            <th scope="col"> 9:10 </th>
+            <th scope="col"> 8:10 </th>
+            <th scope="col"> 7:10 </th>
+            <th scope="col"> 6:10 </th>
+            <th scope="col"> 5:10 </th>
+            <th scope="col"> 4:10 </th>
+            <th scope="col"> 3:10 </th>
+            <th scope="col"> 2:10 </th>
+            <th scope="col"> 1:10 </th>
+            <th scope="col"> 0:10 </th>
+            </tr>
+        </thead>
+
+        {% for key, value in context.players.items %}
+            <tbody>
+                <tr>
+                    <th scope="row"><a class="btn btn-outline-primary btn-block btn-sm" href="{% url 'playerstats' key.id %}?season={% now 'm' %}/{% now 'Y' %}">{{key}}</a></th>
+                    <td {% if value.100 > 0 %} class="green_text"{% endif %}>{{ value.100 }}</td>
+                    <td>{{ value.101 }}</td>
+                    <td>{{ value.102 }}</td>
+                    <td>{{ value.103 }}</td>
+                    <td>{{ value.104 }}</td>
+                    <td>{{ value.105 }}</td>
+                    <td>{{ value.106 }}</td>
+                    <td>{{ value.107 }}</td>
+                    <td>{{ value.108 }}</td>
+                    <td>{{ value.109 }}</td>
+                    <td>{{ value.910 }}</td>
+                    <td>{{ value.810 }}</td>
+                    <td>{{ value.710 }}</td>
+                    <td>{{ value.610 }}</td>
+                    <td>{{ value.510 }}</td>
+                    <td>{{ value.410 }}</td>
+                    <td>{{ value.310 }}</td>
+                    <td>{{ value.210 }}</td>
+                    <td>{{ value.110 }}</td>
+                    <td {% if value.010 > 0 %} class="red_text"{% endif %}>{{ value.010 }}</td>
+                </tr>
+            </tbody>
+        {% endfor %}
+    </table>
+</div>
+
+
+{% endblock content %}

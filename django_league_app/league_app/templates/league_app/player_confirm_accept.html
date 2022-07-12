@@ -1,0 +1,6 @@
+{% extends 'league_app/nav.html' %}
+{% block content %}
+
+<h1>Player {{ player.user }} joined {{ player.league }} league</h1>
+<a href="{% url 'league/ {{ player.league.id }} /manage' %}">Go back</a>
+{% endblock content %}

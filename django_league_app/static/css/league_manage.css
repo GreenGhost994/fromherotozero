@@ -1,0 +1,46 @@
+
+#submit_button {
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 14px 28px;
+    cursor: pointer;
+    text-align: center;
+}
+
+#player_table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#player_table td {
+    padding: 2px;
+  }
+
+#player_table th {
+    padding: 2px;
+    text-align: left;
+  }
+
+  #submit_button {
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 14px 28px;
+    cursor: pointer;
+    text-align: center;
+}
+
+#player_request_table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#player_request_table td {
+    padding: 2px;
+  }
+
+#player_request_table th {
+    padding: 2px;
+    text-align: left;
+  }

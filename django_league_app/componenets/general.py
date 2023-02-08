@@ -40,7 +40,7 @@ def calculate_basic_stats(match_list, mvp_limits):
             results[mtch.def1]['wins'] += 1
             results[mtch.def1]['def_wins'] += 1
             results[mtch.atk2]['losses'] += 1
-            results[mtch.atk2]['def_losses'] += 1
+            results[mtch.atk2]['atk_losses'] += 1
             results[mtch.def2]['losses'] += 1
             results[mtch.def2]['def_losses'] += 1
 

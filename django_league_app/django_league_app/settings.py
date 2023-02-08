@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-h#&g!jf*9oag2k9zl_$udis-xv=1=ow7bnu@wtgk5!q3p8k^&0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['fromherotozero.pythonanywhere.com', '127.0.0.1']
 
 # Application definition
 
@@ -82,6 +82,14 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+    # 'default': {
+    # 'ENGINE': 'django.db.backends.mysql',
+    # 'NAME': 'fromherotozero$django_league_app',
+    # 'USER': 'fromherotozero',
+    # 'PASSWORD': '2HJvBiXqBL954J',
+    # 'HOST': 'fromherotozero.mysql.pythonanywhere-services.com',
+    # 'PORT':'3306',
+    # }
 }
 
 
@@ -109,7 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Warsaw'
 
 USE_I18N = True
 

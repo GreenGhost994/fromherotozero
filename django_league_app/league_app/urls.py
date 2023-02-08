@@ -1,4 +1,5 @@
 from django.urls import path
+from .views import PasswordsChangeView
 from .views import LeagueDelete, LeagueDetail, LeagueList, LeagueCreate, LeagueUpdate, CustomLoginView, RegisterPage
 from .views import MatchList, MatchDetail, MatchList, MatchDelete
 from .views import PlayerCreate, PlayerDetail, PlayerList, PlayerDelete
@@ -12,7 +13,8 @@ urlpatterns = [
     path('login/', CustomLoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(next_page='login'), name='logout'),
     path('register/', RegisterPage.as_view(), name='register'),
-    
+    path('password/', PasswordsChangeView.as_view(), name='password'),
+
     # path('', LeagueList.as_view(), name='league_list'),
     path('', create_match, name='main'),
     

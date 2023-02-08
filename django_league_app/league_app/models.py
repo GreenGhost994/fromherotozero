@@ -69,7 +69,10 @@ class Match(models.Model):
 
 
     def __str__(self):
-        return f'{self.atk1} + {self.def1} vs {self.atk2} + {self.def2} (10:{self.score})'
+        if self.winner == '1':
+            return f'{self.atk1} + {self.def1} vs {self.atk2} + {self.def2} (10:{self.score})'
+        else:
+            return f'{self.atk1} + {self.def1} vs {self.atk2} + {self.def2} ({self.score}:10)'
 
     class Meta:
         ordering = ['created']

@@ -16,11 +16,21 @@
 <div class="user_info">
     {% if request.user.is_authenticated %}
     <div class="user_name">
-        Hi {{ request.user }}!
+
+        <div class="dropdown">
+            <span>Hi {{ request.user }}!</span>
+            <div class="dropdown-content">
+                <ul>
+                    <li>
+                    <a href="{% url 'password' %}">Change password</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
     <div class="loginout">
         <a href="{% url 'logout' %}">Logout</a>
-    </div><!-- <hr> -->
+    </div>
     {% else %}
     <div class="loginout">
         <a href="{% url 'login' %}">Login</a>
@@ -93,6 +103,7 @@
 
 
 
+    
 
 <!-- {% if request.user.is_authenticated %}
     <p>Hi {{ request.user }}!</p>

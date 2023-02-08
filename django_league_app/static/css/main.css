@@ -50,7 +50,7 @@ body::-webkit-scrollbar {
     position: absolute;
     z-index: 99;
     top: 22px;
-    right: 1rem;
+    right: 2rem;
     text-align: right;
     color: white;
     text-transform: uppercase;
@@ -59,7 +59,7 @@ body::-webkit-scrollbar {
 
 .user_name {
     display:inline-block;
-    padding-right: 15px;
+    padding-right: 2rem;
 }
 
 .loginout {
@@ -215,4 +215,36 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
     box-sizing: border-box;
     transform: rotate(-135deg);
     margin-top: -9px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: fixed;
+    background-color: #141E30;
+    min-width: 100px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding-top: 1rem;
+    z-index: 1;
+    font-size: 13px;
+}
+.dropdown-content > ul > li {
+    display:inline-block;    /* This is when the drop down box appears */
+    position: relative;
+    margin-right: 2rem;
+}
+.dropdown-content > ul > li a {
+    color: #fff;
+    text-decoration: none;
+}
+.dropdown-content > ul {
+    text-align:left;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block; 
 }

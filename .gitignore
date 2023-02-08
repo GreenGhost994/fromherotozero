@@ -1,3 +1,16 @@
 venv/
 New Text Document.txt
 django_league_app/db.sqlite3
+
+**/__pycache__/
+__pycache__/
+**/migrations/
+migrations/
+django_league_app/league_app/__pycache__/models.cpython-310.pyc
+django_league_app/league_app/__pycache__/urls.cpython-310.pyc
+django_league_app/league_app/__pycache__/views.cpython-310.pyc
+django_league_app/stats_app/__pycache__/views.cpython-310.pyc
+.gitignore
+django_league_app/django_league_app/__pycache__/__init__.cpython-310.pyc
+django_league_app/django_league_app/__pycache__/settings.cpython-310.pyc
+.gitignore

@@ -23,7 +23,6 @@ def league_stats(request):
 
     season = request.GET.get('season') or ''
     
-
     if season != '':
         date_filter = find_season(season)
         if 'month_filter' in date_filter:
@@ -56,6 +55,7 @@ def league_stats(request):
     context['league'] = league_name
     context['match_amount'] = len(match_list)
     context['players'], context['mvp'] = calculate_basic_stats(match_list, league_object)
+
     return render(request, 'stats_app/stats.html', {'context': context})
 
 
@@ -272,6 +272,10 @@ def calc_player_stats(matches, player_id, players_data):
         5: 'https://media3.giphy.com/media/26FfgonzyqqLWfjsA/giphy.gif?cid=ecf05e47w750fnap9ksb5wmmpr7k51vxqi5mibw267otxml7&rid=giphy.gif&ct=g',
         8: 'https://media0.giphy.com/media/RN96CaqhRoRHk4DlLV/giphy.gif?cid=ecf05e478qqi8t1a9oyj0kvu4z8xxm0mvgvnwaz7orgs5shz&rid=giphy.gif&ct=g',
         9: 'https://media2.giphy.com/media/3CIihjOfDNT0s/giphy.gif?cid=790b7611ed7fdfbbdee313a8e281d87c7de1bc9fe567f405&rid=giphy.gif&ct=g',
+        10: 'https://media3.giphy.com/media/14RWYSvhLyzNm/giphy.gif?cid=ecf05e47z33qx2v8653t3i9fa1oagcdqoenuppny34r3agkj&rid=giphy.gif&ct=g',
+        11: 'https://media3.giphy.com/media/fHoqSTQTsgSbfUoiTw/giphy.gif?cid=ecf05e47i1u3ok6illtz4dnf5g35amlkcjktk6q02eucycu6&rid=giphy.gif&ct=g',
+        12: 'https://media0.giphy.com/media/XNQDgvHvDFnITnAAU5/200.gif?cid=ecf05e47v5nlcibm5p5ndvp9zvl6agwkt6tvq9bjxy8vr82n&rid=200.gif&ct=g',
+        13: 'https://media3.giphy.com/media/1wPWMgD1Wrg9UwgBmo/200w.gif?cid=ecf05e475tt7kup7j150ch2z3973wxga6dw5e9x140ryv4yw&rid=200w.gif&ct=g',
     }
     animation_dominated_by = {
         2: 'https://media2.giphy.com/media/BY8ORoRpnJDXeBNwxg/giphy.gif?cid=ecf05e472sgwnrq43pd5agim3hfbqp744ok0pvnq1v808ifi&rid=giphy.gif&ct=g',
@@ -282,6 +286,10 @@ def calc_player_stats(matches, player_id, players_data):
         7: 'https://c.tenor.com/aRxE-vQoHDQAAAAC/jackson-hannah.gif',
         8: 'https://media4.giphy.com/media/l3q2K5jinAlChoCLS/giphy.gif?cid=790b76118abc6dae1cbaa17d16e7821dff07d9b7a4c58cad&rid=giphy.gif&ct=g',
         9: 'https://media3.giphy.com/media/efh1n8EkcQYEuTOGMn/giphy.gif?cid=790b76110a7cf2d6d5662cc9ce2caa59215f2684cfa15622&rid=giphy.gif&ct=g',
+        10: 'https://media2.giphy.com/media/2BCnh0U8AsvBK/200.gif?cid=ecf05e47wg3ea8nxd7y4mhlqxmhr0e2rkrtxuvjq32ty43gx&rid=200.gif&ct=g',
+        11: 'https://media3.giphy.com/media/5MZrg9tITn0Bi/200.gif?cid=ecf05e47i1u3ok6illtz4dnf5g35amlkcjktk6q02eucycu6&rid=200.gif&ct=g',
+        12: 'https://media0.giphy.com/media/l0HUmvVJSs1ApEhry/200w.gif?cid=ecf05e47v05tnllt8fcb1dex6yjc7ed5vbqzbwtgo8fkzo9z&rid=200w.gif&ct=g',
+        13: 'https://media2.giphy.com/media/kuJPDmkDIKPJp0eF6C/200w.gif?cid=ecf05e47cblqxta6qx82poy55nnbrpetrbjsa0xxafmjjtz0&rid=200w.gif&ct=g',
     }
     for k, v in dominate.items():
         if v[1] in animation_dominate:

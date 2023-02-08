@@ -8,9 +8,9 @@ from django.http import HttpResponseRedirect
 
 from django.utils.decorators import method_decorator
 
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, PasswordChangeView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm, UserChangeForm
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -19,7 +19,7 @@ from django.core.exceptions import ValidationError
 
 from .forms import SettingsForm, MatchForm
 
-from .models import League, Match, Player, PlayerSettings
+from .models import League, Match, Player, PlayerSettings, User
 
 from componenets.general import match_proposal
 
@@ -62,7 +62,10 @@ def requires_league_membership_match(view):
     return _view
 
 
-
+class PasswordsChangeView(LoginRequiredMixin, PasswordChangeView):
+    template_name = 'league_app/password.html'
+    form_class = PasswordChangeForm
+    success_url = reverse_lazy('main')
 
 class CustomLoginView(LoginView):
     template_name = 'league_app/login.html'
@@ -89,6 +92,7 @@ class RegisterPage(FormView):
             return redirect('matchcreate')
         return super(RegisterPage, self).get(*args, **kwarges)
     
+
 # LEAGUE
 class LeagueList(LoginRequiredMixin, ListView):
     model = League
